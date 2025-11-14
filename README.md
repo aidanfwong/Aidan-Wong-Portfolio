@@ -1,3 +1,70 @@
 # Aidan Wong Portfolio
 
-Visit aidanfwong.vercel.app
+This repository contains a modernized React + TypeScript implementation of my personal portfolio. The new frontend lives in [`frontend/`](frontend/) and recreates the static HTML pages (`index.html`, `projects.html`, `experience.html`) as routed, data-driven components.
+
+## Getting started
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The development server runs on [http://localhost:5173](http://localhost:5173) by default.
+
+### Available scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server. |
+| `npm run build` | Type-check and generate a production build in `dist/`. |
+| `npm run preview` | Preview the production build locally. |
+| `npm run lint` | Run ESLint on the project files. |
+| `npm run format` | Format source files with Prettier. |
+| `npm run deploy` | Publish the `dist/` directory to GitHub Pages via `gh-pages`. |
+
+## Backend API
+
+The FastAPI service in [`backend/`](backend/) exposes structured JSON sourced from the same project and experience content that powers the frontend components.
+
+### Setup
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+make dev
+```
+
+The `make dev` target runs `uvicorn main:app --reload --host 0.0.0.0 --port 8000`. Once booted, the API is available at [http://localhost:8000](http://localhost:8000) with the following endpoints:
+
+| Endpoint | Description |
+| --- | --- |
+| `/projects` | Returns highlighted portfolio projects with technology stacks. |
+| `/experience` | Provides the chronological experience timeline and role summaries. |
+| `/skills` | Lists proficiency metadata derived from the technologies used across the site. |
+| `/insights` | Calculates a live skill-growth index, category deltas, and timeline momentum. |
+
+### Frontend integration
+
+The React app reads from these endpoints using `fetch`. Set `VITE_API_URL` in `frontend/.env` if you need to point at a non-default API location; otherwise it falls back to `http://localhost:8000` during development.
+
+## Styling primitives
+
+Tailwind CSS powers layout and responsive primitives. Utility classes are used to build the hero, about grid, projects carousel, and experience timeline so they adapt cleanly across breakpoints.
+
+## Deployment
+
+The project is ready to deploy to GitHub Pages:
+
+1. Build the project: `npm run build`
+2. Deploy: `npm run deploy`
+
+You can also import the `frontend/` directory into Vercel for automated previews and production builds—Vercel detects Vite projects automatically. Set the build command to `npm run build` and the output directory to `dist`.
+
+## Legacy site
+
+The original static site artifacts remain at the repository root for reference. All new development should happen inside the React application.
+
+Binary image and resume assets were replaced with gradient-based placeholders and a configurable resume link. Update `frontend/src/data/profile.ts` or the static HTML files with your preferred URLs if you want to restore direct downloads.

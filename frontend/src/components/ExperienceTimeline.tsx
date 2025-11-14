@@ -1,4 +1,4 @@
-import type { Experience } from "../data/experience";
+import type { Experience } from "../types/portfolio";
 
 type ExperienceTimelineProps = {
   timeline: Experience[];
