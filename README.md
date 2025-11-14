@@ -1,6 +1,6 @@
 # Aidan Wong Portfolio
 
-This repository contains a modernized React + TypeScript implementation of my personal portfolio. The new frontend lives in [`frontend/`](frontend/) and recreates the static HTML pages (`index.html`, `projects.html`, `experience.html`) as routed, data-driven components.
+This repository contains a modernized React + TypeScript implementation of my personal portfolio. The frontend source lives in [`frontend/`](frontend/) and produces the static assets served from the repository root after running `npm run build`, allowing the deployed site to rely on the React Router-powered experience.
 
 ## Getting started
 
@@ -61,10 +61,10 @@ The project is ready to deploy to GitHub Pages:
 1. Build the project: `npm run build`
 2. Deploy: `npm run deploy`
 
-You can also import the `frontend/` directory into Vercel for automated previews and production builds—Vercel detects Vite projects automatically. Set the build command to `npm run build` and the output directory to `dist`.
+You can also import the `frontend/` directory into Vercel for automated previews and production builds—Vercel detects Vite projects automatically. Set the build command to `npm run build` and the output directory to `dist`. If you serve the site from this repository (e.g., GitHub Pages), publish the contents of `frontend/dist/` at the repository root so routing works without manual redirects.
 
 ## Legacy site
 
-The original static site artifacts remain at the repository root for reference. All new development should happen inside the React application.
+The legacy static HTML, CSS, and JavaScript files have been removed from the repository root, and the published site now serves the bundled React build. All new development should happen inside the React application.
 
-Binary image and resume assets were replaced with gradient-based placeholders and a configurable resume link. Update `frontend/src/data/profile.ts` or the static HTML files with your preferred URLs if you want to restore direct downloads.
+Binary image and resume assets were replaced with gradient-based placeholders and a configurable resume link. Update `frontend/src/data/profile.ts` or the React data layer with your preferred URLs if you want to restore direct downloads.
