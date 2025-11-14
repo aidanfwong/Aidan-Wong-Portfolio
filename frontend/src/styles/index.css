@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-surface text-foreground antialiased;
+}
+
+a {
+  @apply text-accent transition-colors;
+}
+
+a:hover {
+  @apply text-accent-muted;
+}
+
+main {
+  @apply w-full;
+}
+
+img {
+  @apply select-none;
+}
+
+@layer utilities {
+  .bg-surface {
+    background-color: #05060f;
+  }
+  .bg-card {
+    background-color: #0b0d16;
+  }
+  .text-foreground {
+    color: #f8fafc;
+  }
+}
