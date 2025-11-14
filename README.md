@@ -23,6 +23,33 @@ The development server runs on [http://localhost:5173](http://localhost:5173) by
 | `npm run format` | Format source files with Prettier. |
 | `npm run deploy` | Publish the `dist/` directory to GitHub Pages via `gh-pages`. |
 
+## Backend API
+
+The FastAPI service in [`backend/`](backend/) exposes structured JSON sourced from the same project and experience content that powers the frontend components.
+
+### Setup
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+make dev
+```
+
+The `make dev` target runs `uvicorn main:app --reload --host 0.0.0.0 --port 8000`. Once booted, the API is available at [http://localhost:8000](http://localhost:8000) with the following endpoints:
+
+| Endpoint | Description |
+| --- | --- |
+| `/projects` | Returns highlighted portfolio projects with technology stacks. |
+| `/experience` | Provides the chronological experience timeline and role summaries. |
+| `/skills` | Lists proficiency metadata derived from the technologies used across the site. |
+| `/insights` | Calculates a live skill-growth index, category deltas, and timeline momentum. |
+
+### Frontend integration
+
+The React app reads from these endpoints using `fetch`. Set `VITE_API_URL` in `frontend/.env` if you need to point at a non-default API location; otherwise it falls back to `http://localhost:8000` during development.
+
 ## Styling primitives
 
 Tailwind CSS powers layout and responsive primitives. Utility classes are used to build the hero, about grid, projects carousel, and experience timeline so they adapt cleanly across breakpoints.
